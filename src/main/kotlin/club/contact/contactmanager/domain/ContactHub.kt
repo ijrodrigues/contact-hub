@@ -15,11 +15,4 @@ data class ContactHub(
     val contacts: MutableList<Contact> = ArrayList(),
     @Id
     val id: String = randomUUID().toString()
-) {
-    override fun toString(): String {
-        return "ContactHub(title='$title', " +
-                "description='$description'," +
-                " profilePhotoUrl='$profilePhotoUrl', " +
-                " id='$id')"
-    }
-}
+)

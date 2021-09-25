@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contact-manager-database
+spec:
+  template:
+    metadata:
+      name: contact-manager-database
+      labels:
+        app: contact-manager-database
+    spec:
+      containers:
+        - name: contact-manager-database
+          image: mysql:8.0.25
+          ports:
+            - containerPort: 3306
+          envFrom:
+            - configMapRef:
+                name: contact-manager-database-config-map
+  replicas: 1
+  selector:
+    matchLabels:
+      app: contact-manager-database

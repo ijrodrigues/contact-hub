@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contact-manager
+spec:
+  template:
+    metadata:
+      name: contact-manager
+      labels:
+        app: contact-manager
+    spec:
+      containers:
+        - name: contact-manager
+          image: contact-manager:1.0
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: contact-manager-config-map
+  replicas: 3
+  selector:
+    matchLabels:
+      app: contact-manager

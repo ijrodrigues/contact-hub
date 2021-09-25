@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: contact-manager-database-config-map
+data:
+  MYSQL_ROOT_PASSWORD: admin
+  MYSQL_DATABASE: contact-manager

@@ -16,4 +16,8 @@ data class Contact(
     val linkToRedirect: String,
     @Id
     val id: String = UUID.randomUUID().toString()
-)
+){
+    override fun toString(): String {
+        return "Contact(description='$description', icon='$icon', linkToRedirect='$linkToRedirect', id='$id')"
+    }
+}

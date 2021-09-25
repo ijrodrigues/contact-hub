@@ -5,6 +5,7 @@ import club.contact.contactmanager.model.contacthub.response.ContactHubResponse
 import club.contact.contactmanager.model.contacthub.response.ContactHubResponse.Companion.from
 import club.contact.contactmanager.model.contacthub.response.IdResponse
 import club.contact.contactmanager.repository.ContactHubRepository
+import org.slf4j.LoggerFactory
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.ResponseEntity
@@ -24,10 +25,13 @@ class ContactHubController(
     private val contactHubRepository: ContactHubRepository
     ) {
 
+    private val logger = LoggerFactory.getLogger(javaClass)
+
     @PostMapping
     @ResponseStatus(CREATED)
     fun create(@RequestBody @Valid request: CreateContactHubRequest): IdResponse {
         val contactHub = contactHubRepository.save(request.toContactHub())
+        logger.info("Hub created, content: $contactHub")
         return IdResponse(contactHub.id)
     }
 
